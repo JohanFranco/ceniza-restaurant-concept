@@ -1,0 +1,34 @@
+---
+/** Wordmark tipográfico: CENIZA con la "Z" atravesada por una brasa. */
+interface Props { class?: string; size?: 'sm' | 'xl' }
+const { class: className = '', size = 'sm' } = Astro.props;
+---
+<span class:list={['wordmark', `wordmark-${size}`, className]} aria-label="Ceniza">
+  <span aria-hidden="true">CENI</span><span class="wm-z" aria-hidden="true">Z</span><span aria-hidden="true">A</span>
+</span>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 96;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    line-height: 1;
+  }
+  .wordmark-sm { font-size: 1.15rem; letter-spacing: 0.32em; }
+  .wm-z { position: relative; }
+  .wm-z::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -0.18em;
+    width: 0.16em;
+    height: 0.16em;
+    border-radius: 50%;
+    translate: -50% 0;
+    background: var(--color-brasa);
+    box-shadow: 0 0 0.35em var(--color-brasa);
+  }
+</style>

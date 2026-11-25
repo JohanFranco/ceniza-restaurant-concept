@@ -1,0 +1,64 @@
+---
+import Img from './Img.astro';
+import SectionHead from './SectionHead.astro';
+
+const notes = [
+  { t: 'Luz', d: 'Ninguna lámpara apunta a su cara. La sala se ilumina con apliques de latón a media altura, velas de cera de abeja y el resplandor del fogón abierto al fondo.' },
+  { t: 'Servicio', d: 'Un mismo anfitrión acompaña su mesa toda la noche. Conoce cada productor, cada palenque y sabe cuándo hablar y cuándo dejarle la sobremesa.' },
+  { t: 'Ritmo', d: 'Dos turnos por noche y catorce mesas, nunca más. El tiempo entre platos lo marca el fuego y la conversación, no la cocina.' },
+];
+---
+
+<section id="espacio" class="relative" aria-labelledby="espacio-title">
+  <!-- Momento cinematográfico: la sala se abre desde una ventana hasta llenar la pantalla -->
+  <div data-expand class="relative h-[100svh] overflow-hidden">
+    <div data-expand-frame class="absolute inset-0" style="clip-path: inset(18% 30% 18% 30%)">
+      <Img
+        name="sala"
+        alt="Comedor en penumbra con lámparas cálidas y mesas de madera oscura"
+        sizes="100vw"
+        class="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-carbon/45"></div>
+    </div>
+    <div class="shell relative flex h-full flex-col items-center justify-center text-center">
+      <SectionHead index="03" label="Experiencia y espacio" class="justify-center" />
+      <h2 id="espacio-title" data-split class="h-section mt-8 max-w-[14ch]">
+        Una sala que se ilumina con <em>lo que arde.</em>
+      </h2>
+    </div>
+  </div>
+
+  <div class="shell py-[clamp(6rem,12vw,10rem)]">
+    <div class="grid gap-14 md:grid-cols-12 md:gap-8">
+      <div class="md:col-span-5">
+        <p data-fade class="font-display text-[clamp(1.6rem,2.6vw,2.3rem)] leading-[1.2] [font-variation-settings:'opsz'_48]">
+          Muros de cantera volcánica, madera de nogal y un techo bajo que guarda el calor. Ceniza se pensó como una casa:
+          se entra por la cocina y se cena <em class="text-brasa">mirando el fuego.</em>
+        </p>
+        <dl class="mt-12 grid gap-8">
+          {
+            notes.map((n) => (
+              <div data-fade class="border-t border-hueso/15 pt-5">
+                <dt class="eyebrow text-hueso">{n.t}</dt>
+                <dd class="mt-3 text-[0.98rem] leading-relaxed text-hueso/65">{n.d}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 md:col-span-6 md:col-start-7 md:gap-6">
+        <div data-reveal class="frame frame-zoom aspect-[3/4] translate-y-0 md:translate-y-16">
+          <Img name="apliques" alt="Pasillo con apliques de luz cálida en penumbra" parallax={8} width={1920} height={2400} sizes="(min-width: 768px) 25vw, 50vw" class="scale-[1.15]" />
+        </div>
+        <div data-reveal class="frame frame-zoom aspect-[3/4]">
+          <Img name="mesa" alt="Mesa puesta con copas junto a una ventana de madera" parallax={8} width={1920} height={2560} sizes="(min-width: 768px) 25vw, 50vw" class="scale-[1.15]" />
+        </div>
+        <div data-reveal class="frame frame-zoom col-span-2 aspect-[16/9] md:mt-10">
+          <Img name="sala2" alt="Comedor con mesas puestas bajo una luz baja" parallax={8} width={1920} height={1286} sizes="(min-width: 768px) 50vw, 100vw" class="scale-[1.15]" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

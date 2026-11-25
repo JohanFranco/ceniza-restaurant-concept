@@ -1,0 +1,56 @@
+---
+import Img from './Img.astro';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="chef" class="relative border-t border-hueso/10 bg-tizne py-[clamp(6rem,12vw,10rem)]" aria-labelledby="chef-title">
+  <div class="shell grid gap-14 md:grid-cols-12 md:gap-8">
+    <div class="md:col-span-5">
+      <div data-reveal class="frame aspect-[4/5]">
+        <Img name="chef" alt="Retrato de la chef Inés Valdivia en penumbra" parallax={10} width={1920} height={2560} sizes="(min-width: 768px) 40vw, 100vw" class="scale-[1.18] object-[50%_30%]" />
+      </div>
+    </div>
+
+    <div class="flex flex-col md:col-span-6 md:col-start-7">
+      <SectionHead index="04" label="Dirección culinaria" />
+      <h2 id="chef-title" data-split class="h-section mt-8">
+        Inés <em>Valdivia</em>
+      </h2>
+      <p data-fade class="eyebrow mt-5 text-hueso/70">Chef y fundadora</p>
+
+      <div class="mt-10 grid gap-5 text-[1.02rem] leading-relaxed text-hueso/70">
+        <p data-fade>
+          Creció en Cuetzalan, en la Sierra Norte de Puebla, donde la cocina de su abuela no tenía perillas: tenía
+          un tlecuil, un comal de barro y leña que había que saber escuchar.
+        </p>
+        <p data-fade>
+          Se formó en la Ciudad de México y pasó ocho años entre San Sebastián y Copenhague, en cocinas que trabajan
+          con brasa y fermentación. Volvió en 2020 con una idea fija: hacer alta cocina mexicana sin una sola flama de
+          gas. Ceniza abrió sus puertas un año después.
+        </p>
+      </div>
+
+      <blockquote data-fade class="mt-12 border-l border-brasa pl-6">
+        <p class="font-display text-[clamp(1.6rem,2.6vw,2.4rem)] italic leading-[1.15] [font-variation-settings:'opsz'_48]">
+          «El fuego no se domina. Se escucha, y uno aprende a cocinar a su ritmo.»
+        </p>
+      </blockquote>
+
+      <div class="mt-auto grid grid-cols-[1fr_auto] items-end gap-6 pt-14">
+        <dl class="grid grid-cols-2 gap-6 text-sm">
+          <div data-fade class="border-t border-hueso/15 pt-4">
+            <dt class="eyebrow">Origen</dt>
+            <dd class="mt-2 text-hueso/80">Sierra Norte de Puebla</dd>
+          </div>
+          <div data-fade class="border-t border-hueso/15 pt-4">
+            <dt class="eyebrow">Escuela</dt>
+            <dd class="mt-2 text-hueso/80">Brasa y fermentación</dd>
+          </div>
+        </dl>
+        <div data-reveal class="frame frame-zoom hidden aspect-[2/3] w-36 sm:block lg:w-44">
+          <Img name="emplatado" alt="Manos de cocinero emplatando con pinzas un plato sobre maíz" width={1920} height={2880} sizes="180px" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

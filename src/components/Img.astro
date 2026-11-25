@@ -1,0 +1,42 @@
+---
+/**
+ * Imagen responsiva local (public/img/<name>-sm|lg.webp).
+ * `parallax` envuelve la imagen para moverla con el scroll dentro de su marco.
+ */
+interface Props {
+  name: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  imgClass?: string;
+  eager?: boolean;
+  width?: number;
+  height?: number;
+  parallax?: number;
+}
+const {
+  name,
+  alt,
+  sizes = '(min-width: 1024px) 50vw, 100vw',
+  class: className = '',
+  imgClass = '',
+  eager = false,
+  width = 1920,
+  height = 1280,
+  parallax,
+} = Astro.props;
+---
+
+<img
+  src={`/img/${name}-lg.webp`}
+  srcset={`/img/${name}-sm.webp 900w, /img/${name}-lg.webp 1920w`}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={eager ? 'high' : 'auto'}
+  class:list={[className, imgClass]}
+  data-parallax={parallax}
+/>

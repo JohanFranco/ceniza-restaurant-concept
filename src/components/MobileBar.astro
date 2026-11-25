@@ -1,0 +1,20 @@
+---
+import { contact } from '@/data/site';
+---
+<div
+  data-mobile-bar
+  class="fixed inset-x-3 bottom-3 z-30 grid translate-y-[140%] grid-cols-2 gap-2 rounded-full border border-hueso/15 bg-carbon/80 p-1.5 backdrop-blur-md transition-transform duration-700 ease-[var(--ease-luxe)] md:hidden"
+>
+  <a href={contact.phoneHref} class="flex min-h-12 items-center justify-center gap-2 rounded-full bg-hueso text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-carbon active:scale-[0.97]">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3h3l2 5-2.5 1.5a11 11 0 0 0 7 7L16 14l5 2v3a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    Llamar
+  </a>
+  <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" class="flex min-h-12 items-center justify-center gap-2 rounded-full border border-hueso/25 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] active:scale-[0.97]">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    WhatsApp
+  </a>
+</div>
+<style>
+  [data-mobile-bar] { transition-property: translate; }
+  [data-mobile-bar].is-visible { translate: 0 0; }
+</style>

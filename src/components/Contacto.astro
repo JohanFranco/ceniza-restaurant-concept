@@ -1,0 +1,81 @@
+---
+import SectionHead from './SectionHead.astro';
+import { brand, contact, hours, nav } from '@/data/site';
+const year = new Date().getFullYear();
+---
+
+<footer id="contacto" class="relative border-t border-hueso/10 bg-tizne pt-[clamp(6rem,12vw,10rem)]" aria-labelledby="contacto-title">
+  <div class="shell">
+    <SectionHead index="07" label="Ubicación y contacto" />
+    <h2 id="contacto-title" class="sr-only">Ubicación y contacto</h2>
+
+    <a
+      href={contact.mapsHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group mt-10 block"
+      aria-label={`Abrir ${contact.street}, ${contact.district} en el mapa`}
+    >
+      <span data-split class="display block text-[clamp(3rem,10vw,10rem)] leading-[0.9] transition-colors duration-700 group-hover:text-brasa">
+        {contact.street},
+      </span>
+      <span data-split class="display block text-[clamp(3rem,10vw,10rem)] italic leading-[0.95] text-hueso/55 transition-colors duration-700 group-hover:text-hueso">
+        {contact.district}
+      </span>
+    </a>
+
+    <div class="mt-[clamp(4rem,8vw,7rem)] grid gap-12 border-t border-hueso/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div data-fade>
+        <h3 class="eyebrow">Encuéntrenos</h3>
+        <p class="mt-4 leading-relaxed text-hueso/80">
+          {contact.street}<br />{contact.district}<br />{contact.city}
+        </p>
+        <a href={contact.mapsHref} target="_blank" rel="noopener noreferrer" class="link-draw mt-3 inline-flex min-h-11 items-center text-sm text-brasa">Abrir en el mapa</a>
+      </div>
+      <div data-fade>
+        <h3 class="eyebrow">Horario</h3>
+        <ul class="mt-4 grid gap-1 text-hueso/80">
+          {hours.map((h) => <li>{h.days} <span class="text-hueso/50">· {h.time}</span></li>)}
+        </ul>
+      </div>
+      <div data-fade>
+        <h3 class="eyebrow">Contacto</h3>
+        <ul class="mt-4 grid">
+          <li><a href={contact.phoneHref} class="link-draw inline-flex min-h-11 items-center text-hueso/80 hover:text-hueso">{contact.phoneDisplay}</a></li>
+          <li><a href={`mailto:${contact.email}`} class="link-draw inline-flex min-h-11 items-center text-hueso/80 hover:text-hueso">{contact.email}</a></li>
+          <li><a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" class="link-draw inline-flex min-h-11 items-center text-hueso/80 hover:text-hueso">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div data-fade>
+        <h3 class="eyebrow">Síganos</h3>
+        <ul class="mt-4 grid">
+          {
+            contact.social.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" class="group/s inline-flex min-h-11 items-center gap-3 text-hueso/80 hover:text-hueso">
+                  <span class="link-draw">{s.label}</span>
+                  <span class="text-sm text-hueso/45">{s.handle}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <nav aria-label="Pie de página" class="mt-16 flex flex-wrap gap-x-8 gap-y-1 border-t border-hueso/15 pt-6">
+      {nav.map((l) => <a href={l.href} class="link-draw inline-flex min-h-11 items-center text-[0.6875rem] uppercase tracking-[0.3em] text-hueso/60 hover:text-hueso">{l.label}</a>)}
+    </nav>
+  </div>
+
+  <div class="mt-10 overflow-hidden" aria-hidden="true">
+    <p data-footer-word class="display shell flex justify-between text-[clamp(4.5rem,20.5vw,22rem)] leading-[0.78] text-hueso/[0.07]">
+      {['C', 'E', 'N', 'I', 'Z', 'A'].map((l) => <span class="inline-block">{l}</span>)}
+    </p>
+  </div>
+
+  <div class="shell flex flex-col gap-2 border-t border-hueso/10 py-6 pb-28 text-xs text-hueso/45 sm:flex-row sm:justify-between md:pb-6">
+    <p>© {year} {brand.name} · {brand.descriptor}. Restaurante ficticio, proyecto conceptual de portafolio.</p>
+    <p>Fotografía: <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer" class="link-draw hover:text-hueso">Unsplash</a></p>
+  </div>
+</footer>

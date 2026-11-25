@@ -1,0 +1,30 @@
+---
+import Gallery from './Gallery';
+import SectionHead from './SectionHead.astro';
+import { gallery } from '@/data/site';
+---
+
+<section id="galeria" data-gallery class="relative overflow-hidden" aria-labelledby="galeria-title">
+  <div data-gallery-pin class="flex min-h-[100svh] flex-col justify-center gap-[clamp(2.5rem,6vh,4rem)] py-[clamp(6rem,10vw,8rem)] lg:h-[100svh] lg:py-0">
+    <div class="shell flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div>
+        <SectionHead index="05" label="Galería" />
+        <h2 id="galeria-title" data-split class="h-section mt-8">Una noche <em>en Ceniza</em></h2>
+      </div>
+      <p data-fade class="max-w-xs text-sm leading-relaxed text-hueso/60">
+        Humo, barro, maíz y mezcal. Toque cualquier imagen para verla completa.
+      </p>
+    </div>
+    <div
+      data-gallery-viewport
+      class="overflow-x-auto px-[clamp(1.25rem,4vw,4rem)] pb-2 [scrollbar-width:none] snap-x snap-mandatory lg:snap-none lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden"
+    >
+      <Gallery client:visible photos={gallery} />
+    </div>
+    <div class="shell hidden lg:block">
+      <div class="relative h-px bg-hueso/15">
+        <span data-gallery-progress class="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-brasa"></span>
+      </div>
+    </div>
+  </div>
+</section>

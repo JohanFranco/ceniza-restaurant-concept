@@ -1,0 +1,9 @@
+---
+interface Props { index: string; label: string; class?: string }
+const { index, label, class: className = '' } = Astro.props;
+---
+<div class:list={['flex items-center gap-4', className]} data-fade>
+  <span class="eyebrow text-brasa">{index}</span>
+  <span class="h-px w-10 bg-hueso/25" aria-hidden="true"></span>
+  <span class="eyebrow">{label}</span>
+</div>

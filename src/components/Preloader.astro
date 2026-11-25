@@ -1,0 +1,18 @@
+---
+/** Telón de entrada: el nombre se enciende y el telón sube. */
+---
+<div data-preloader class="fixed inset-0 z-[90] flex items-center justify-center bg-carbon" aria-hidden="true">
+  <div class="flex flex-col items-center gap-6">
+    <div class="overflow-hidden">
+      <p data-pre-word class="display text-[clamp(2.4rem,6vw,4.5rem)] tracking-[0.3em] pl-[0.3em]">CENIZA</p>
+    </div>
+    <div class="relative h-px w-40 overflow-hidden bg-hueso/10">
+      <span data-pre-line class="absolute inset-0 origin-left scale-x-0 bg-brasa"></span>
+    </div>
+    <p data-pre-sub class="eyebrow">Encendiendo el fogón</p>
+  </div>
+</div>
+<style>
+  html:not(.js) [data-preloader],
+  html.reduced [data-preloader] { display: none; }
+</style>

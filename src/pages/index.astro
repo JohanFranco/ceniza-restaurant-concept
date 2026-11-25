@@ -1,0 +1,43 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Nav from '@/components/Nav';
+import Preloader from '@/components/Preloader.astro';
+import Hero from '@/components/Hero.astro';
+import Esencia from '@/components/Esencia.astro';
+import Carta from '@/components/Carta.astro';
+import Espacio from '@/components/Espacio.astro';
+import Chef from '@/components/Chef.astro';
+import Galeria from '@/components/Galeria.astro';
+import Reservas from '@/components/Reservas.astro';
+import Contacto from '@/components/Contacto.astro';
+import MobileBar from '@/components/MobileBar.astro';
+import { contact, hours, nav } from '@/data/site';
+---
+
+<Layout>
+  <Preloader />
+  <Nav
+    client:load
+    links={nav}
+    hours={hours}
+    phoneDisplay={contact.phoneDisplay}
+    phoneHref={contact.phoneHref}
+    address={`${contact.street}, ${contact.district}, CDMX`}
+  />
+  <main id="contenido">
+    <Hero />
+    <Esencia />
+    <Carta />
+    <Espacio />
+    <Chef />
+    <Galeria />
+    <Reservas />
+  </main>
+  <Contacto />
+  <MobileBar />
+</Layout>
+
+<script>
+  import { initMotion } from '@/scripts/motion';
+  initMotion();
+</script>

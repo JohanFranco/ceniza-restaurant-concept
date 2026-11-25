@@ -1,0 +1,89 @@
+---
+import '@/styles/global.css';
+import { brand, contact } from '@/data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${brand.name} — ${brand.descriptor} en ${contact.district}`,
+  description = brand.description,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/img/hero-lg.webp', Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: brand.name,
+  description,
+  servesCuisine: ['Mexicana', 'Cocina de humo'],
+  priceRange: '$$$$',
+  acceptsReservations: true,
+  telephone: contact.phoneDisplay,
+  email: contact.email,
+  url: canonical.href,
+  image: ogImage.href,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: contact.street,
+    addressLocality: `${contact.district}, ${contact.city}`,
+    addressCountry: 'MX',
+  },
+  openingHours: ['Tu-Th 13:30-23:00', 'Fr-Sa 13:30-00:30', 'Su 13:30-18:00'],
+};
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0f0d0b" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content={brand.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="preload" as="image" href="/img/hero-lg.webp" media="(min-width: 901px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/hero-sm.webp" media="(max-width: 900px)" fetchpriority="high" />
+
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduced');
+        // Red de seguridad: si las animaciones no arrancan, mostrar todo.
+        window.setTimeout(function () {
+          if (!d.classList.contains('motion-ready')) d.classList.remove('js');
+        }, 4000);
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-hueso focus:px-5 focus:py-3 focus:text-carbon"
+      >Saltar al contenido</a
+    >
+    <slot />
+    <div class="grain" aria-hidden="true"></div>
+  </body>
+</html>
